@@ -3,7 +3,9 @@
   "minVersion": "0.8",
   "package": "gay.menkissing.nether_bags.mixins",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [],
+  "mixins": [
+    "NetherChestConfigMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }
