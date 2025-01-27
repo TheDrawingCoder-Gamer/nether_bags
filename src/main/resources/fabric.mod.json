@@ -15,6 +15,18 @@
         "adapter": "scala",
         "value": "gay.menkissing.nether_bags.NetherBags"
       }
+    ],
+    "client": [
+      {
+        "adapter": "scala",
+        "value": "gay.menkissing.nether_bags.NetherBags"
+      }
+    ],
+    "modmenu": [
+      {
+        "adapter": "scala",
+        "value": "gay.menkissing.nether_bags.compat.modmenu.ModMenuCompat"
+      }
     ]
   },
   "mixins": [
@@ -25,5 +37,9 @@
     "fabric": "*",
     "minecraft": "${minecraft_version}",
     "nether_chest": ">=${nether_chest_version}"
+  },
+  "suggests": {
+    "modmenu": "${modmenu}",
+    "cloth-config": "${cloth_config}"
   }
 }

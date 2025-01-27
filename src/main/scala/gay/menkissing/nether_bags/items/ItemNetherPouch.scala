@@ -6,12 +6,15 @@ import dev.kir.netherchest.block.NetherChestBlock
 import dev.kir.netherchest.block.entity.NetherChestBlockEntity
 import dev.kir.netherchest.inventory.NetherChestInventory
 import dev.kir.netherchest.screen.NetherChestScreenHandler
+import gay.menkissing.nether_bags.NetherBags
+import gay.menkissing.nether_bags.screens.NetherPouchScreenHandler
 import net.minecraft.nbt.{CompoundTag, Tag}
 import net.minecraft.world.{InteractionHand, InteractionResult, InteractionResultHolder, SimpleMenuProvider}
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.Level
 import net.minecraft.network.chat.Component
+import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.inventory.ChestMenu
 
 import scala.jdk.OptionConverters.*
@@ -40,6 +43,10 @@ class ItemNetherPouch extends Item(new Item.Properties().stacksTo(1).rarity(Rari
 
     if !level.isClientSide then
       val tag = stack.getTag
+      if !NetherBags.config.allowUsingUnboundBags && (tag == null || !tag.contains("key", Tag.TAG_COMPOUND)) then
+        val serverPlayer = player.asInstanceOf[ServerPlayer]
+        serverPlayer.sendSystemMessage(Component.translatable("message.nether_bags.unbound"), true)
+        return InteractionResultHolder.fail(stack)
 
       val item = if NetherChest.getConfig.enableMultichannelMode && tag != null && tag.contains("key", Tag.TAG_COMPOUND) then ItemStack.of(tag.getCompound("key")) else ItemStack.EMPTY
       val inventory = NetherChestInventory.viewOf(level, item).toScala
@@ -47,7 +54,7 @@ class ItemNetherPouch extends Item(new Item.Properties().stacksTo(1).rarity(Rari
         case Some(inv) =>
 
           if NetherChest.getConfig.enableMultichannelMode then
-            player.openMenu(new SimpleMenuProvider((i, playerInv, _) => new NetherChestScreenHandler(i, playerInv, inv), stack.getHoverName))
+            player.openMenu(new SimpleMenuProvider((i, playerInv, _) => new NetherPouchScreenHandler(i, playerInv, inv), stack.getHoverName))
           else
             player.openMenu(new SimpleMenuProvider((i, playerInv, _) => ChestMenu.threeRows(i, playerInv, inv), stack.getHoverName))
         case _ => ()

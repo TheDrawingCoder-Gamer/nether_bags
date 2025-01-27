@@ -12,12 +12,10 @@ base {
 }
 
 loom {
-    splitEnvironmentSourceSets()
 
     mods {
         "nether_bags" {
             sourceSet sourceSets.main
-            sourceSet sourceSets.client
         }
     }
 }
@@ -83,7 +81,9 @@ processResources {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
                 "loader_version": project.loader_version,
-                "nether_chest_version": project.nether_chest_version
+                "nether_chest_version": project.nether_chest_version,
+                "modmenu": project.modmenu_version,
+                "cloth_config": project.cloth_version
     }
 }
 

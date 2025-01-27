@@ -1,16 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    " # ",
+    "X#X",
     "#N#",
-    " # "
+    "X#X"
   ],
   "key": {
     "#": {
       "item": "minecraft:leather"
     },
     "N": {
-      "item": "nether_chest:nether_chest"
+      "item": "minecraft:blaze_powder"
+    },
+    "X": {
+      "item": "minecraft:nether_bricks"
     }
   },
   "result": {

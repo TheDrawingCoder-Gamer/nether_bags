@@ -1,3 +1,8 @@
 {
-  "item.nether_bags.nether_bag": "Nether Bag"
+  "item.nether_bags.nether_bag": "Nether Bag",
+  "message.nether_bags.unbound": "This bag is unbound",
+  "text.autoconfig.nether_bags.title": "Nether Bags",
+  "text.autoconfig.nether_bags.option.allowUsingUnboundBagsField": "Allow using unbound bags",
+  "text.autoconfig.nether_bags.option.allowUsingUnboundBagsField.@Tooltip[0]": "When enabled, lets unbound bags open the",
+  "text.autoconfig.nether_bags.option.allowUsingUnboundBagsField.@Tooltip[1]": "default empty nether chest"
 }
