@@ -4,7 +4,7 @@ Bags for [nether chest](https://modrinth.com/mod/nether-chest)
 
 Craft it by surrounding a blaze powder with 4 leather and 4 nether bricks
 
-[!recipe](media/crafting_recipe.png)
+![recipe](media/crafting_recipe.png)
 
 (recipe rendered by EMI)
 
