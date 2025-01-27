@@ -4,5 +4,8 @@
   "text.autoconfig.nether_bags.title": "Nether Bags",
   "text.autoconfig.nether_bags.option.allowUsingUnboundBagsField": "Allow using unbound bags",
   "text.autoconfig.nether_bags.option.allowUsingUnboundBagsField.@Tooltip[0]": "When enabled, lets unbound bags open the",
-  "text.autoconfig.nether_bags.option.allowUsingUnboundBagsField.@Tooltip[1]": "default empty nether chest"
+  "text.autoconfig.nether_bags.option.allowUsingUnboundBagsField.@Tooltip[1]": "default empty nether chest",
+  "text.autoconfig.nether_bags.option.allowChangingItemField": "Allow changing item",
+  "text.autoconfig.nether_bags.option.allowChangingItemField@Tooltip[0]": "When enabled, disables binding and lets",
+  "text.autoconfig.nether_bags.option.allowChangingItemField@Tooltip[1]": "the slot in a bag be changed directly."
 }

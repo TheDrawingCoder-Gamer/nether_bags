@@ -10,9 +10,14 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer
 class NetherBagsClothConfig extends NetherBagsConfig, ConfigData:
   @ConfigEntry.Gui.Tooltip(count = 2)
   var allowUsingUnboundBagsField: Boolean = super.allowUsingUnboundBags
+  
+  @ConfigEntry.Gui.Tooltip(count = 1)
+  var allowChangingItemField: Boolean = super.allowChangingItem
 
 
   override def allowUsingUnboundBags: Boolean = allowUsingUnboundBagsField
+
+  override def allowChangingItem: Boolean = allowChangingItemField
 
 object NetherBagsClothConfig:
   val instance = AutoConfig.register(classOf[NetherBagsClothConfig], (i, j) => GsonConfigSerializer(i, j)).getConfig

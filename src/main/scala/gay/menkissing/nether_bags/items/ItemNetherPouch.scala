@@ -8,14 +8,16 @@ import dev.kir.netherchest.inventory.NetherChestInventory
 import dev.kir.netherchest.screen.NetherChestScreenHandler
 import gay.menkissing.nether_bags.NetherBags
 import gay.menkissing.nether_bags.screens.NetherPouchScreenHandler
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.nbt.{CompoundTag, Tag}
+import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.world.{InteractionHand, InteractionResult, InteractionResultHolder, SimpleMenuProvider}
-import net.minecraft.world.entity.player.Player
+import net.minecraft.world.entity.player.{Inventory, Player}
 import net.minecraft.world.item.context.UseOnContext
 import net.minecraft.world.level.Level
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerPlayer
-import net.minecraft.world.inventory.ChestMenu
+import net.minecraft.world.inventory.{AbstractContainerMenu, ChestMenu}
 
 import scala.jdk.OptionConverters.*
 
@@ -25,7 +27,8 @@ class ItemNetherPouch extends Item(new Item.Properties().stacksTo(1).rarity(Rari
     val world = useOnContext.getLevel
     if world.isClientSide then
       return InteractionResult.PASS
-
+    if NetherBags.config.allowChangingItem then
+      return InteractionResult.PASS
     val player = useOnContext.getPlayer
     val tile   = world.getBlockEntity(useOnContext.getClickedPos)
     tile match
@@ -43,7 +46,8 @@ class ItemNetherPouch extends Item(new Item.Properties().stacksTo(1).rarity(Rari
 
     if !level.isClientSide then
       val tag = stack.getTag
-      if !NetherBags.config.allowUsingUnboundBags && (tag == null || !tag.contains("key", Tag.TAG_COMPOUND)) then
+
+      if !NetherBags.config.allowChangingItem && NetherBags.config.allowUsingUnboundBags && (tag == null || !tag.contains("key", Tag.TAG_COMPOUND)) then
         val serverPlayer = player.asInstanceOf[ServerPlayer]
         serverPlayer.sendSystemMessage(Component.translatable("message.nether_bags.unbound"), true)
         return InteractionResultHolder.fail(stack)
@@ -54,7 +58,17 @@ class ItemNetherPouch extends Item(new Item.Properties().stacksTo(1).rarity(Rari
         case Some(inv) =>
 
           if NetherChest.getConfig.enableMultichannelMode then
-            player.openMenu(new SimpleMenuProvider((i, playerInv, _) => new NetherPouchScreenHandler(i, playerInv, inv), stack.getHoverName))
+            player.openMenu(new ExtendedScreenHandlerFactory {
+              override def writeScreenOpeningData(serverPlayer: ServerPlayer, friendlyByteBuf: FriendlyByteBuf): Unit =
+                friendlyByteBuf.writeBoolean(interactionHand == InteractionHand.MAIN_HAND)
+                friendlyByteBuf.writeBoolean(!NetherBags.config.allowChangingItem)
+
+              override def getDisplayName: Component =
+                stack.getHoverName
+
+              override def createMenu(i: Int, pInv: Inventory, player: Player): AbstractContainerMenu =
+                new NetherPouchScreenHandler(i, pInv, inv, stack, !NetherBags.config.allowChangingItem)
+            })
           else
             player.openMenu(new SimpleMenuProvider((i, playerInv, _) => ChestMenu.threeRows(i, playerInv, inv), stack.getHoverName))
         case _ => ()
