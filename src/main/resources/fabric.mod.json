@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "nether_bags",
+  "version": "${version}",
+  "name": "nether bags",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "BSD-3-Clause",
+  "icon": "assets/nether_bags/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "scala",
+        "value": "gay.menkissing.nether_bags.NetherBags"
+      }
+    ]
+  },
+  "mixins": [
+    "nether_bags.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "nether_chest": ">=${nether_chest_version}"
+  }
+}
