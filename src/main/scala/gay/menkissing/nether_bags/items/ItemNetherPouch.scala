@@ -47,7 +47,7 @@ class ItemNetherPouch extends Item(new Item.Properties().stacksTo(1).rarity(Rari
     if !level.isClientSide then
       val tag = stack.getTag
 
-      if !NetherBags.config.allowChangingItem && NetherBags.config.allowUsingUnboundBags && (tag == null || !tag.contains("key", Tag.TAG_COMPOUND)) then
+      if !NetherBags.config.allowChangingItem && !NetherBags.config.allowUsingUnboundBags && (tag == null || !tag.contains("key", Tag.TAG_COMPOUND)) then
         val serverPlayer = player.asInstanceOf[ServerPlayer]
         serverPlayer.sendSystemMessage(Component.translatable("message.nether_bags.unbound"), true)
         return InteractionResultHolder.fail(stack)

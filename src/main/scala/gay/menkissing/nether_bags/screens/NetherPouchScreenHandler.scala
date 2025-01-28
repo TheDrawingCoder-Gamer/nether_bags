@@ -82,7 +82,7 @@ class NetherPouchScreenHandler(syncId: Int, playerInv: Inventory, val container:
 
   override def removed(player: Player): Unit =
     super.removed(player)
-    if player.level() != null && !player.level().isClientSide then
+    if !this.locked && player.level() != null && !player.level().isClientSide then
       var stack = container.getItem(NetherPouchScreenHandler.containerSize - 1)
       if stack == null then
         stack = ItemStack.EMPTY
