@@ -11,6 +11,17 @@ base {
     archivesName = project.archives_base_name
 }
 
+sourceSets {
+    main {
+        scala {
+            srcDirs = ["src/main/scala", "src/main/java"]
+        }
+        java {
+            srcDirs = []
+        }
+    }
+}
+
 loom {
 
     mods {
@@ -66,6 +77,7 @@ dependencies {
     // copied dependencies from nether chest
     modImplementation "com.terraformersmc:modmenu:${project.modmenu_version}"
     modImplementation "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}"
+    // ipn seems to not work
     modCompileOnly "org.anti_ad.mc:InventoryProfilesNext-fabric-1.20:${project.ipn_version}"
 
     // end copied dependencies
@@ -88,7 +100,7 @@ processResources {
 }
 
 def targetJavaVersion = 17
-tasks.withType(JavaCompile).configureEach {
+tasks.withType(ScalaCompile).configureEach {
     // ensure that the encoding is set to UTF-8, no matter what the system default is
     // this fixes some edge cases with special characters not displaying correctly
     // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html

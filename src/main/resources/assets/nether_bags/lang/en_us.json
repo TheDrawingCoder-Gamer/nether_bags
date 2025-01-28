@@ -5,7 +5,13 @@
   "text.autoconfig.nether_bags.option.allowUsingUnboundBagsField": "Allow using unbound bags",
   "text.autoconfig.nether_bags.option.allowUsingUnboundBagsField.@Tooltip[0]": "When enabled, lets unbound bags open the",
   "text.autoconfig.nether_bags.option.allowUsingUnboundBagsField.@Tooltip[1]": "default empty nether chest",
-  "text.autoconfig.nether_bags.option.allowChangingItemField": "Allow changing item",
+  "text.autoconfig.nether_bags.option.allowChangingItemField": "Allow changing channel",
   "text.autoconfig.nether_bags.option.allowChangingItemField.@Tooltip[0]": "When enabled, disables binding and lets",
-  "text.autoconfig.nether_bags.option.allowChangingItemField.@Tooltip[1]": "the channel in a bag be changed directly"
+  "text.autoconfig.nether_bags.option.allowChangingItemField.@Tooltip[1]": "the channel in a bag be changed directly",
+  "text.autoconfig.nether_bags.option.allowTuningToBagsField": "Allow tuning to bags",
+  "text.autoconfig.nether_bags.option.allowTuningToBagsField.@Tooltip[0]": "When enabled, lets nether bags go",
+  "text.autoconfig.nether_bags.option.allowTuningToBagsField.@Tooltip[1]": "in the channel slot",
+  "text.autoconfig.nether_bags.option.allowTuningToContainersField": "Allow tuning to containers",
+  "text.autoconfig.nether_bags.option.allowTuningToContainersField.@Tooltip[0]": "When enabled, lets shulker boxes and bags",
+  "text.autoconfig.nether_bags.option.allowTuningToContainersField.@Tooltip[1]": "inside the channel slot"
 }

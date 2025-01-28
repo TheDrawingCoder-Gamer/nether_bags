@@ -12,6 +12,8 @@ import net.minecraft.world.entity.player.Inventory
 object NetherPouchScreen:
   val texture: ResourceLocation = NetherChest.locate("textures/gui/container/nether_chest.png")
 
+// Ipn doesn't work? too bad : (
+// @IPNIgnore
 @Environment(EnvType.CLIENT)
 class NetherPouchScreen(handler: NetherPouchScreenHandler, inventory: Inventory, title: Component) extends AbstractContainerScreen[NetherPouchScreenHandler](handler, inventory, title) with MenuAccess[NetherPouchScreenHandler]:
   this.imageWidth = 212

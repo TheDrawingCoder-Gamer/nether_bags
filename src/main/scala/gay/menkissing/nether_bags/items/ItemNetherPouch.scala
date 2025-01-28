@@ -22,7 +22,6 @@ import net.minecraft.world.inventory.{AbstractContainerMenu, ChestMenu}
 import scala.jdk.OptionConverters.*
 
 class ItemNetherPouch extends Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)):
-  override def canFitInsideContainerItems: Boolean = false
   override def useOn(useOnContext: UseOnContext): InteractionResult =
     val stack = useOnContext.getItemInHand
     val world = useOnContext.getLevel

@@ -23,3 +23,18 @@ I'm not your mom or anything, but I suggest that if you do this you make the rec
 You can also config the behavior of the bag - you can make it match the normal nether chest,
 and disable the binding feature (otherwise you'd be able to duplicate items).
 (default false, again really ruins balance). Again probably change the recipe.
+
+## Adding this mod to a world
+
+This mod is compatible with nether chest worlds with one exception:
+Shulker Box channels will be inaccessible (this is to prevent world save errors/book bans).
+You also can't tune to Nether Bag channels either.
+
+You can reenable tuning to Shulker Boxes with the "Allow tuning to containers" option.
+(This option also affects any modded items that can't go inside shulker boxes -
+if it can't go inside a Shulker box by default you can't tune to it)
+
+You can also enable tuning to Nether Bag channels with the "Allow tuning to bags" option.
+
+This is default false for a reason: players can very easily nest the bag and channel enough to where the world will have trouble
+saving, or where it can become an item that causes a chunk ban.
